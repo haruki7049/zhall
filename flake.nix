@@ -22,7 +22,10 @@
         checks.formatting = treefmtEval.config.build.check self;
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [ zigpkgs."0.13.0" ];
+          nativeBuildInputs = with pkgs; [
+            zigpkgs."0.13.0"
+            zls
+          ];
 
           shellHook = ''
             export PS1="\n[nix-shell:\w]$ "
