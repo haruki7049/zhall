@@ -16,3 +16,21 @@ test "simple test" {
     try list.append(42);
     try std.testing.expectEqual(@as(i32, 42), list.pop());
 }
+
+test "parse string to dhall" {
+    const dhall_str =
+        \\{ home       = "/home/bill"
+        \\, privateKey = "/home/bill/.ssh/id_ed25519"
+        \\, publicKey  = "/home/blil/.ssh/id_ed25519.pub"
+        \\}
+    ;
+    try std.testing.expectEqual(Dhall.parse(dhall_str).original_string, dhall_str);
+}
+
+const Dhall = struct {
+    original_string: []const u8,
+
+    pub fn parse(original_string: []const u8) Dhall {
+        return Dhall{ .original_string = original_string };
+    }
+};
