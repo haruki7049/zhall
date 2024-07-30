@@ -25,6 +25,7 @@
           nativeBuildInputs = with pkgs; [
             zigpkgs."0.13.0"
             zls
+            nil
           ];
 
           shellHook = ''
