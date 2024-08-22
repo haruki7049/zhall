@@ -1,17 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    zig.url = "github:mitchellh/zig-overlay";
     flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
-  outputs = { self, nixpkgs, systems, flake-utils, zig, treefmt-nix }:
+  outputs = { self, nixpkgs, flake-utils, treefmt-nix }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        overlays =
-          [ (final: prev: { zigpkgs = zig.packages.${prev.system}; }) ];
-        pkgs = import nixpkgs { inherit system overlays; };
+        pkgs = import nixpkgs { inherit system; };
         treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
@@ -23,7 +20,7 @@
 
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
-            zigpkgs."0.13.0"
+            zig_0_13
             zls
             nil
           ];
