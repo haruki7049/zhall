@@ -1,6 +1,9 @@
 # Direnv
 .direnv/
 
+# Nix's result
+result
+
 ### Copyed by: https://github.com/ziglang/zig/blob/16604a93b9159fafec3528457366ca146bf29ce5/.gitignore
 # This file is for zig-specific build artifacts.
 # If you have OS-specific or editor-specific files to ignore,
