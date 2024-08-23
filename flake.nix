@@ -38,11 +38,6 @@
           default = zhall;
         };
 
-        # nix run .#default
-        apps.default = flake-utils.lib.mkApp {
-          drv = zhall;
-        };
-
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             zig_0_13
