@@ -5,8 +5,15 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
-  outputs = { self, nixpkgs, flake-utils, treefmt-nix }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      treefmt-nix,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pname = "zhall";
         pkgs = import nixpkgs { inherit system; };
@@ -16,9 +23,7 @@
           version = "0.1.0";
           src = ./.;
 
-          nativeBuildInputs = [
-            pkgs.zig_0_13.hook
-          ];
+          nativeBuildInputs = [ pkgs.zig_0_13.hook ];
         };
       in
       {
@@ -49,5 +54,6 @@
             export PS1="\n[nix-shell:\w]$ "
           '';
         };
-      });
+      }
+    );
 }
