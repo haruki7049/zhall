@@ -1,16 +1,8 @@
 const std = @import("std");
 const testing = std.testing;
 
-pub const Dhall = struct {
-    const Self = @This();
-
-    pub fn parse(_: []const u8) Dhall {
-        return Self{};
-    }
-
-    const Bool = @import("bool.zig");
-};
+pub const Dhall = @import("./dhall.zig");
 
 test "Run tests in zhall" {
-    _ = Dhall.Bool;
+    _ = @import("./dhall.zig");
 }

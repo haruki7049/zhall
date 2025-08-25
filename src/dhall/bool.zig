@@ -9,7 +9,7 @@ pub fn new(value: bool) Self {
     return Self{ .value = value };
 }
 
-pub fn parse(text: []const u8) Self.ParseError!Self {
+pub fn parse(text: []const u8) ParseError!Self {
     if (std.mem.eql(u8, text, "True")) {
         return Self.new(true);
     } else if (std.mem.eql(u8, text, "False")) {
